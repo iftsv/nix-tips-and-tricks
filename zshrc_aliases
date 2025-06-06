@@ -3,3 +3,6 @@ alias getipinfo='curl -u {SERVICE_TOKEN}: ipinfo.io'
 
 # download YouTube video as mp4 file
 alias yt2mp4="yt-dlp --extractor-args youtube:player_client=android -o 'video.%(id.6:2:-1)s.%(ext)s' -P '~/Downloads/YTDLP' $1"
+
+# сontinuously checks ICMP availability and announces the result.
+alias pinghost="while true; do ping -c1 -t1 192.168.1.1 >/dev/null 2>&1 && say 'online' || say 'offline'; sleep 0.5; done"
