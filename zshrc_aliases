@@ -6,3 +6,17 @@ alias yt2mp4="yt-dlp --extractor-args youtube:player_client=android -o 'video.%(
 
 # сontinuously checks ICMP availability and announces the result.
 alias pinghost="while true; do ping -c1 -t1 192.168.1.1 >/dev/null 2>&1 && say 'online' || say 'offline'; sleep 0.5; done"
+
+
+# Extract AAC audio to M4A instantly without re-encoding
+mp4to_m4a() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: mp4to_m4a <file.mp4> [output.m4a]"
+    return 1
+  fi
+
+  local input="$1"
+  local output="${2:-${input%.*}.m4a}"
+
+  ffmpeg -i "$input" -vn -c:a copy "$output"
+}
